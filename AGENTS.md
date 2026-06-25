@@ -7,6 +7,7 @@
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4
 - **Variants**: tailwind-variants
+- **Font**: Open Sans (Google Fonts)
 - **Package Manager**: pnpm
 - **Linting**: TypeScript (no linter)
 
@@ -74,10 +75,27 @@ chore: update tailwindcss to v4.3
 - Avoid inline styles (`style={{}}`)
 - Avoid CSS modules and plain CSS files — prefer Tailwind + tv()
 
+### Design Tokens (Colors)
+
+Only these colors are available in the Tailwind theme — do not use arbitrary values:
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `gray-100` | `#1F2523` | Text primary |
+| `gray-200` | `#4D5C57` | Text secondary / icons |
+| `gray-300` | `#CDD5D2` | Borders / dividers |
+| `gray-400` | `#E4ECE9` | Surface background |
+| `gray-500` | `#F9FBFA` | Page background |
+| `white` | `#FFFFFF` | White surface |
+| `green-100` | `#1F8459` | Primary / active states |
+| `green-200` | `#2CB178` | Hover states |
+
 ### File Structure
 
 ```
 src/
+├── assets/
+│   └── icons/     # SVG icons (no fill — use currentColor)
 ├── components/    # Reusable UI components
 ├── pages/         # Route pages / screens
 ├── hooks/         # Custom React hooks
