@@ -97,7 +97,7 @@ src/
 ├── assets/
 │   └── icons/     # SVG icons (no fill — use currentColor)
 ├── components/    # Reusable UI components
-├── pages/         # Route pages / screens
+├── pages/         # Route pages / screens (kebab-case, e.g. playground.tsx, refund-list.tsx)
 ├── hooks/         # Custom React hooks
 ├── utils/         # Helper functions
 ├── types/         # Shared TypeScript types
