@@ -4,6 +4,7 @@ import { Button } from '../components/Button'
 import { IconButton } from '../components/IconButton'
 import { Icon } from '../components/Icon'
 import { NavLink } from '../components/NavLink'
+import { Input } from '../components/Input'
 
 export function ComponentPlayground() {
   return (
@@ -73,6 +74,14 @@ export function ComponentPlayground() {
         <div className="flex items-center gap-2">
           <NavLink href="#">Default</NavLink>
           <NavLink href="#" isActive>Active</NavLink>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <Text size="heading-lg" color="primary">Input</Text>
+        <div className="flex max-w-sm flex-col gap-4">
+          <Input label="Label" placeholder="Placeholder" />
+          <Input label="Label" defaultValue="Text" />
         </div>
       </section>
     </div>
