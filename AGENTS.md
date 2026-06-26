@@ -108,6 +108,7 @@ Rules:
 - Use `tailwind-variants` (`tv()`) for component variants and reusable styles
 - Avoid inline styles (`style={{}}`)
 - Avoid CSS modules and plain CSS files — prefer Tailwind + tv()
+- Use backtick template literals (`` ` ``) in `tv()` base/variants for multi-line class strings — never inline single-line strings
 
 ### Design Tokens (Colors)
 
