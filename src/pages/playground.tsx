@@ -5,6 +5,7 @@ import { IconButton } from '../components/IconButton'
 import { Icon } from '../components/Icon'
 import { NavLink } from '../components/NavLink'
 import { Input } from '../components/Input'
+import { SelectField } from '../components/SelectField'
 
 export function ComponentPlayground() {
   return (
@@ -82,6 +83,34 @@ export function ComponentPlayground() {
         <div className="flex max-w-sm flex-col gap-4">
           <Input label="Label" placeholder="Placeholder" />
           <Input label="Label" defaultValue="Text" />
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <Text size="heading-lg" color="primary">SelectField</Text>
+        <div className="flex max-w-sm flex-col gap-4">
+          <SelectField
+            label="Categoria"
+            placeholder="Selecione"
+            options={[
+              { value: "alimentacao", label: "Alimentação" },
+              { value: "hospedagem", label: "Hospedagem" },
+              { value: "transporte", label: "Transporte" },
+              { value: "servicos", label: "Serviços" },
+              { value: "outros", label: "Outros" },
+            ]}
+          />
+          <SelectField
+            label="Categoria"
+            options={[
+              { value: "alimentacao", label: "Alimentação" },
+              { value: "hospedagem", label: "Hospedagem" },
+              { value: "transporte", label: "Transporte" },
+              { value: "servicos", label: "Serviços" },
+              { value: "outros", label: "Outros" },
+            ]}
+            value="alimentacao"
+          />
         </div>
       </section>
     </div>
