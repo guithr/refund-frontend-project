@@ -68,6 +68,40 @@ chore: update tailwindcss to v4.3
 - Use `function` declaration for components, not arrow functions
 - Named exports for components, default export only for pages
 
+### Components Patterns
+
+Every component must follow this structure:
+
+```
+import { tv, type VariantProps } from "tailwind-variants";
+
+const componentVariants = tv({
+  base: "...",
+  variants: { ... },
+  defaultVariants: { ... },
+});
+
+interface ComponentProps
+  extends Omit<React.ComponentProps<"element">, "conflictingNativeProp">,
+    VariantProps<typeof componentVariants> {}
+
+export function Component({ variantProp, className, children, ...props }: ComponentProps) {
+  return (
+    <element className={componentVariants({ variantProp, className })} {...props}>
+      {children}
+    </element>
+  );
+}
+```
+
+Rules:
+- Import `tv` and `VariantProps` from `tailwind-variants`
+- Define `tv()` config first, then interface, then component
+- Extend `React.ComponentProps<"element">` omitting only props that conflict with variants
+- Use `VariantProps<typeof componentVariants>` for variant types
+- Spread `...props` on the native element to forward all native props
+- Never use `React.createElement` — use JSX with dynamic `Tag`
+
 ### Styling
 
 - Use Tailwind utility classes directly in JSX
