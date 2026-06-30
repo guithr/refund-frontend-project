@@ -151,3 +151,4 @@ src/
 - Feature branches: `feature/<name>`
 - Fix branches: `fix/<name>`
 - Always commit in English following conventional commits format
+- **Never auto-commit** — wait for explicit user request before committing
