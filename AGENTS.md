@@ -66,7 +66,15 @@ chore: update tailwindcss to v4.3
 - Functional components with hooks
 - No class components
 - Use `function` declaration for components, not arrow functions
-- Named exports for components, default export only for pages
+- Named exports for all components and pages
+
+### Pages
+
+```
+src/pages/layout.tsx  →  export function Layout()
+src/pages/refund-list.tsx  →  export function RefundList()
+src/pages/playground.tsx  →  export function Playground()
+```
 
 ### Components Patterns
 
@@ -132,7 +140,8 @@ src/
 ├── assets/
 │   └── icons/     # SVG icons (no fill — use currentColor)
 ├── components/    # Reusable UI components
-├── pages/         # Route pages / screens (kebab-case, e.g. playground.tsx, refund-list.tsx)
+├── contexts/      # React Context providers and hooks
+├── pages/         # Route pages / screens (kebab-case, e.g. layout.tsx, refund-list.tsx)
 ├── hooks/         # Custom React hooks
 ├── utils/         # Helper functions
 ├── types/         # Shared TypeScript types

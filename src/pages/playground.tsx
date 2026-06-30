@@ -73,8 +73,8 @@ export function ComponentPlayground() {
       <section className="space-y-4">
         <Text size="heading-lg" color="primary">NavLink</Text>
         <div className="flex items-center gap-2">
-          <NavLink href="#">Default</NavLink>
-          <NavLink href="#" isActive>Active</NavLink>
+          <NavLink to="/">Default</NavLink>
+          <NavLink to="/" isActive>Active</NavLink>
         </div>
       </section>
 

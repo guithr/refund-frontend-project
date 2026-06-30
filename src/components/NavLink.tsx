@@ -1,3 +1,4 @@
+import { NavLink as RouterNavLink, type NavLinkProps as RouterNavLinkProps } from "react-router";
 import { tv, type VariantProps } from "tailwind-variants";
 
 const navLinkVariants = tv({
@@ -14,17 +15,19 @@ const navLinkVariants = tv({
 });
 
 interface NavLinkProps
-  extends Omit<React.ComponentProps<"a">, "color">,
-    VariantProps<typeof navLinkVariants> {}
+  extends Omit<RouterNavLinkProps, "className">,
+    VariantProps<typeof navLinkVariants> {
+  className?: string;
+}
 
 export function NavLink({ isActive, className, children, ...props }: NavLinkProps) {
   return (
-    <a
+    <RouterNavLink
       className={navLinkVariants({ isActive, className })}
       aria-current={isActive ? "page" : undefined}
       {...props}
     >
       {children}
-    </a>
+    </RouterNavLink>
   );
 }
