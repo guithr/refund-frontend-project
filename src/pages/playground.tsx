@@ -90,7 +90,7 @@ export function ComponentPlayground() {
         <Text size="heading-lg" color="primary">SelectField</Text>
         <div className="flex max-w-sm flex-col gap-4">
           <SelectField
-            label="Categoria"
+            labelText="Categoria"
             placeholder="Selecione"
             options={[
               { value: "alimentacao", label: "Alimentação" },
@@ -101,7 +101,7 @@ export function ComponentPlayground() {
             ]}
           />
           <SelectField
-            label="Categoria"
+            labelText="Categoria"
             options={[
               { value: "alimentacao", label: "Alimentação" },
               { value: "hospedagem", label: "Hospedagem" },
@@ -110,6 +110,17 @@ export function ComponentPlayground() {
               { value: "outros", label: "Outros" },
             ]}
             value="alimentacao"
+          />
+          <SelectField
+            labelText="Categoria"
+            options={[
+              { value: "alimentacao", label: "Alimentação" },
+              { value: "hospedagem", label: "Hospedagem" },
+              { value: "transporte", label: "Transporte" },
+              { value: "servicos", label: "Serviços" },
+              { value: "outros", label: "Outros" },
+            ]}
+            error="Campo obrigatório"
           />
         </div>
       </section>
