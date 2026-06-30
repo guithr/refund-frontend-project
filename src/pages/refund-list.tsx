@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Text } from "../components/Text";
 import { RefundSearch } from "../components/refund-search";
 import { RefundRow } from "../components/refund-row";
@@ -17,12 +18,17 @@ export function RefundList() {
 
       <div className="space-y-4 my-6">
         {filteredRefunds.map((item) => (
-          <RefundRow
+          <Link
             key={item.id}
-            name={item.name}
-            category={item.category}
-            value={item.value}
-          />
+            to={`/detalhe/${item.id}`}
+            className="block rounded-lg transition-colors hover:bg-gray-400 px-2 -mx-2"
+          >
+            <RefundRow
+              name={item.name}
+              category={item.category}
+              value={item.value}
+            />
+          </Link>
         ))}
       </div>
 
