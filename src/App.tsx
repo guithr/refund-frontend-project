@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router'
-import { ComponentPlayground } from './pages/playground'
+import { RefundList } from './pages/refund-list'
 
 export function App() {
   return (
     <Routes>
-      <Route path="/" element={<ComponentPlayground />} />
+      <Route path="/" element={<RefundList />} />
     </Routes>
   )
 }
