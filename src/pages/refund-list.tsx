@@ -26,12 +26,12 @@ export function RefundList() {
   const { searchQuery, setSearchQuery, filteredRefunds } = useRefund();
 
   return (
-    <main className="mx-auto mt-11 w-full max-w-[1082px] flex-1 rounded-2xl bg-gray-500 p-10">
+    <main className="mx-auto mt-10 w-full max-w-[1082px] rounded-2xl bg-gray-500 p-10">
       <Text as="h1" size="heading-lg" color="primary" className="mb-6">
         Solicitações
       </Text>
 
-      <div className="mb-6 flex items-end gap-3">
+      <div className="mb-6 flex items-end gap-3 border-b border-gray-400 pb-6">
         <div className="flex-1">
           <Input
             placeholder="Pesquisar pelo nome"
@@ -50,7 +50,7 @@ export function RefundList() {
           return (
             <div
               key={item.id}
-              className="flex items-center justify-between py-1"
+              className="flex items-center justify-between py-0.5"
             >
               <div className="flex items-center gap-3">
                 <div className="flex size-[34px] items-center justify-center rounded-full bg-gray-400">
@@ -60,13 +60,13 @@ export function RefundList() {
                   <Text as="p" size="body-md" color="primary" className="font-bold">
                     {item.name}
                   </Text>
-                  <Text as="p" size="body-sm" color="secondary">
+                  <Text as="p" size="body-sm" color="secondary" className="text-xs leading-4">
                     {categoryLabels[item.category]}
                   </Text>
                 </div>
               </div>
               <div className="flex items-baseline gap-0.5">
-                <Text as="span" size="body-sm" color="secondary">
+                <Text as="span" size="body-sm" color="secondary" className="text-xs leading-4">
                   R$
                 </Text>
                 <Text as="span" size="body-md" color="primary" className="font-semibold">
@@ -81,7 +81,7 @@ export function RefundList() {
         })}
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-3">
+      <div className="mt-6 flex items-center justify-center gap-3">
         <IconButton size="sm">
           <Icon svg={CaretLeftSvg} className="size-4 text-white" />
         </IconButton>

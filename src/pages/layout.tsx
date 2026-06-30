@@ -8,7 +8,7 @@ export function Layout() {
     <div className="flex min-h-screen flex-col bg-gray-400">
       <header className="mx-auto flex w-full max-w-[1185px] items-center justify-between py-2">
         <LogoSvg />
-        <nav className="flex items-center gap-0">
+        <nav className="flex items-center gap-4">
           <NavLink to="/" isActive>
             Solicitações de reembolso
           </NavLink>
