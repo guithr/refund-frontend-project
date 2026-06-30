@@ -1,46 +1,7 @@
 import { tv, type VariantProps } from "tailwind-variants";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import { Select } from "radix-ui";
+import { CaretDownIcon, CheckIcon } from "@phosphor-icons/react";
 import { useState } from "react";
-
-function CaretDown({ className }: { className?: string }) {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      className={className}
-    >
-      <path
-        d="M5 7.5L10 12.5L15 7.5"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function Check({ className }: { className?: string }) {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      className={className}
-    >
-      <path
-        d="M16.875 5.625L8.125 14.375L3.75 10"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 const selectTriggerVariants = tv({
   base: `
@@ -56,8 +17,7 @@ interface SelectFieldOption {
   label: string;
 }
 
-interface SelectFieldProps
-  extends VariantProps<typeof selectTriggerVariants> {
+interface SelectFieldProps extends VariantProps<typeof selectTriggerVariants> {
   label?: string;
   placeholder?: string;
   options: SelectFieldOption[];
@@ -79,7 +39,7 @@ export function SelectField({
   const [open, setOpen] = useState(false);
 
   return (
-    <SelectPrimitive.Root
+    <Select.Root
       open={open}
       onOpenChange={setOpen}
       value={value}
@@ -98,48 +58,47 @@ export function SelectField({
           </span>
         )}
 
-        <SelectPrimitive.Trigger className={selectTriggerVariants({ className })}>
-          <SelectPrimitive.Value
+        <Select.Trigger className={selectTriggerVariants({ className })}>
+          <Select.Value
             placeholder={placeholder}
-            className="text-gray-100 data-[placeholder]:text-gray-200"
+            className="text-gray-100 data-placeholder:text-gray-200"
           />
-          <SelectPrimitive.Icon>
-            <CaretDown
+          <Select.Icon>
+            <CaretDownIcon
+              size={20}
               className={`transition-colors ${open ? "text-green-100" : "text-gray-300"}`}
             />
-          </SelectPrimitive.Icon>
-        </SelectPrimitive.Trigger>
+          </Select.Icon>
+        </Select.Trigger>
       </div>
 
-      <SelectPrimitive.Portal>
-        <SelectPrimitive.Content
+      <Select.Portal>
+        <Select.Content
           position="popper"
           sideOffset={4}
           className="z-50 w-[--radix-select-trigger-width] rounded-lg border border-gray-300 bg-gray-500"
         >
-          <SelectPrimitive.Viewport className="p-2">
+          <Select.Viewport className="p-2">
             {options.map((option) => (
-              <SelectPrimitive.Item
+              <Select.Item
                 key={option.value}
                 value={option.value}
                 className={`
                   flex h-[42px] cursor-pointer items-center gap-2 rounded-md px-4
                   text-sm text-gray-100 outline-none transition-colors
-                  data-[highlighted]:bg-gray-400
+                  data-highlighted:bg-gray-400
                   data-[state=checked]:font-bold
                 `}
               >
-                <SelectPrimitive.ItemText>
-                  {option.label}
-                </SelectPrimitive.ItemText>
-                <SelectPrimitive.ItemIndicator className="ml-auto text-green-100">
-                  <Check />
-                </SelectPrimitive.ItemIndicator>
-              </SelectPrimitive.Item>
+                <Select.ItemText>{option.label}</Select.ItemText>
+                <Select.ItemIndicator className="ml-auto text-green-100">
+                  <CheckIcon size={20} />
+                </Select.ItemIndicator>
+              </Select.Item>
             ))}
-          </SelectPrimitive.Viewport>
-        </SelectPrimitive.Content>
-      </SelectPrimitive.Portal>
-    </SelectPrimitive.Root>
+          </Select.Viewport>
+        </Select.Content>
+      </Select.Portal>
+    </Select.Root>
   );
 }

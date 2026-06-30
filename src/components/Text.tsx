@@ -24,15 +24,15 @@ const textVariants = tv({
 
 type As = 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'label'
 
-interface TextProps extends VariantProps<typeof textVariants> {
+interface TextProps
+  extends Omit<React.ComponentPropsWithoutRef<"span">, "color">,
+    VariantProps<typeof textVariants> {
   as?: As
-  children?: React.ReactNode
-  className?: string
 }
 
-export function Text({ as: Tag = 'span', size, color, className, children }: TextProps) {
+export function Text({ as: Tag = 'span', size, color, className, children, ...props }: TextProps) {
   return (
-    <Tag className={textVariants({ size, color, className })}>
+    <Tag className={textVariants({ size, color, className })} {...props}>
       {children}
     </Tag>
   )
