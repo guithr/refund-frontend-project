@@ -1,4 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router";
+import { Toaster } from "sonner";
 import LogoSvg from "../assets/icons/logo.svg?react";
 import { NavLink } from "../components/NavLink";
 import { Button } from "../components/Button";
@@ -22,6 +23,19 @@ export function Layout() {
       </header>
 
       <Outlet />
+
+      <Toaster
+        position="bottom-left"
+        toastOptions={{
+          style: {
+            background: "#1F2523",
+            color: "#F9FBFA",
+            border: "none",
+            fontSize: 14,
+            fontFamily: "Open Sans, sans-serif",
+          },
+        }}
+      />
     </div>
   );
 }
