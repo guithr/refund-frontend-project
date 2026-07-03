@@ -6,6 +6,7 @@ import { Input } from "../components/Input";
 import { SelectField } from "../components/SelectField";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+import { Skeleton } from "../components/Skeleton";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { useRefund } from "../contexts/refund-context";
 import { categoryLabels, categoryKeys } from "../types/refund";
@@ -17,10 +18,41 @@ const options = categoryKeys.map((key) => ({
 
 export function RefundDetail() {
   const { id } = useParams();
-  const { refunds } = useRefund();
+  const { refunds, isLoading } = useRefund();
   const navigate = useNavigate();
 
   const refund = refunds.find((item) => item.id === id);
+
+  if (isLoading) {
+    return (
+      <main className="mx-auto mt-10 w-full max-w-[512px]">
+        <Card>
+          <Skeleton className="h-7 w-72 mb-3" />
+          <Skeleton className="h-5 w-56 mb-10" />
+          <div className="flex flex-col gap-8">
+            <div className="space-y-1">
+              <Skeleton className="h-4 w-40" />
+              <Skeleton className="h-11 w-full" />
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-1 space-y-1">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-11 w-full" />
+              </div>
+              <div className="w-[154px] space-y-1">
+                <Skeleton className="h-4 w-14" />
+                <Skeleton className="h-11 w-full" />
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col items-center gap-8">
+            <Skeleton className="h-5 w-44" />
+            <Skeleton className="h-12 w-full" />
+          </div>
+        </Card>
+      </main>
+    );
+  }
 
   if (!refund) {
     return (

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useMemo, type ReactNode } from "react";
+import { createContext, useContext, useState, useMemo, useEffect, type ReactNode } from "react";
 import type { RefundItem } from "../types/refund";
 
 const mockRefunds: RefundItem[] = [
@@ -15,6 +15,7 @@ interface RefundContextType {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   filteredRefunds: RefundItem[];
+  isLoading: boolean;
 }
 
 const RefundContext = createContext<RefundContextType | undefined>(undefined);
@@ -25,6 +26,12 @@ interface RefundProviderProps {
 
 export function RefundProvider({ children }: RefundProviderProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredRefunds = useMemo(
     () =>
@@ -35,8 +42,8 @@ export function RefundProvider({ children }: RefundProviderProps) {
   );
 
   const value = useMemo(
-    () => ({ refunds: mockRefunds, searchQuery, setSearchQuery, filteredRefunds }),
-    [searchQuery],
+    () => ({ refunds: mockRefunds, searchQuery, setSearchQuery, filteredRefunds, isLoading }),
+    [searchQuery, isLoading],
   );
 
   return (
