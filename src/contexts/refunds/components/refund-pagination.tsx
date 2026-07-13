@@ -1,8 +1,8 @@
-import { IconButton } from "./IconButton";
-import { Icon } from "./Icon";
-import { Text } from "./Text";
-import CaretLeftSvg from "../assets/icons/caret-left.svg?react";
-import CaretRightSvg from "../assets/icons/caret-right.svg?react";
+import { IconButton } from "../../../components/IconButton";
+import { Icon } from "../../../components/Icon";
+import { Text } from "../../../components/Text";
+import CaretLeftSvg from "../../../assets/icons/caret-left.svg?react";
+import CaretRightSvg from "../../../assets/icons/caret-right.svg?react";
 
 export function RefundPagination() {
   return (

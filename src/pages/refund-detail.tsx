@@ -9,12 +9,7 @@ import { Card } from "../components/Card";
 import { Skeleton } from "../components/Skeleton";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { useRefund } from "../contexts/refund-context";
-import { categoryLabels, categoryKeys } from "../types/refund";
-
-const options = categoryKeys.map((key) => ({
-  value: key,
-  label: categoryLabels[key],
-}));
+import { categoryOptions } from "../utils/helpers";
 
 export function RefundDetail() {
   const { id } = useParams();
@@ -95,7 +90,7 @@ export function RefundDetail() {
               <SelectField
                 labelText="CATEGORIA"
                 defaultValue={refund.category}
-                options={options}
+                options={categoryOptions}
                 disabled
               />
             </div>

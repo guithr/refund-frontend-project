@@ -1,8 +1,8 @@
-import { Input } from "./Input";
-import { IconButton } from "./IconButton";
-import { Icon } from "./Icon";
-import { useRefund } from "../contexts/refund-context";
-import MagnifyingGlassSvg from "../assets/icons/magnifying-glass.svg?react";
+import { Input } from "../../../components/Input";
+import { IconButton } from "../../../components/IconButton";
+import { Icon } from "../../../components/Icon";
+import { useRefund } from "../../refund-context";
+import MagnifyingGlassSvg from "../../../assets/icons/magnifying-glass.svg?react";
 
 export function RefundSearch() {
   const { searchQuery, setSearchQuery } = useRefund();

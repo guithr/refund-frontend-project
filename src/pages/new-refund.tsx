@@ -6,12 +6,7 @@ import { SelectField } from "../components/SelectField";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { FileInput } from "../components/FileInput";
-import { categoryLabels, categoryKeys } from "../types/refund";
-
-const options = categoryKeys.map((key) => ({
-  value: key,
-  label: categoryLabels[key],
-}));
+import { categoryOptions } from "../utils/helpers";
 
 export function NewRefund() {
   const navigate = useNavigate();
@@ -49,7 +44,7 @@ export function NewRefund() {
                 placeholder="Selecione"
                 value={category}
                 onValueChange={setCategory}
-                options={options}
+                options={categoryOptions}
               />
             </div>
             <div className="w-[154px]">

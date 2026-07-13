@@ -72,8 +72,32 @@ chore: update tailwindcss to v4.3
 
 ```
 src/pages/layout.tsx  →  export function Layout()
-src/pages/refund-list.tsx  →  export function RefundList()
+src/pages/home.tsx  →  export function Home()
+src/pages/refund-detail.tsx  →  export function RefundDetail()
+src/pages/new-refund.tsx  →  export function NewRefund()
+src/pages/refund-sent.tsx  →  export function RefundSent()
 src/pages/playground.tsx  →  export function Playground()
+```
+
+### Domain Components
+
+Domain-specific components (e.g. refund list/row) live inside the domain module under `contexts/<domain>/components/`. Use a plain interface (not `tv()` variants) for props that don't need styling variants:
+
+```tsx
+import { Icon } from "../../../components/Icon";
+import { Text } from "../../../components/Text";
+import { categoryIcons } from "../../../utils/helpers";
+
+interface RefundRowProps {
+  title: string;
+  category: keyof typeof categoryIcons;
+  value: number;
+}
+
+export function RefundRow({ title, category, value }: RefundRowProps) {
+  const IconComponent = categoryIcons[category].icon;
+  ...
+}
 ```
 
 ### Components Patterns
@@ -139,16 +163,69 @@ Only these colors are available in the Tailwind theme — do not use arbitrary v
 src/
 ├── assets/
 │   └── icons/     # SVG icons (no fill — use currentColor)
-├── components/    # Reusable UI components
-├── contexts/      # React Context providers and hooks
-├── pages/         # Route pages / screens (kebab-case, e.g. layout.tsx, refund-list.tsx)
+├── components/    # Reusable UI components (Button, Card, Input, etc.)
+├── contexts/
+│   ├── refund-context.tsx  # Legacy — use contexts/refunds/ instead
+│   └── refunds/            # Refund domain module
+│       ├── models/
+│       │   └── refund.ts   # Refund entity type
+│       ├── hooks/
+│       │   └── use-refunds.ts  # Fetch refunds via React Query
+│       └── components/
+│           ├── refund-list.tsx  # List screen consumed by pages/home
+│           ├── refund-row.tsx   # Single row with dynamic icon & category
+│           ├── refund-pagination.tsx
+│           └── refund-search.tsx
+├── pages/         # Route pages / screens (kebab-case, e.g. home.tsx, new-refund.tsx)
 ├── hooks/         # Custom React hooks
-├── utils/         # Helper functions
-├── types/         # Shared TypeScript types
-├── services/      # API calls
+├── utils/
+│   └── helpers.ts # Category data (categoryIcons, categoryOptions)
+├── types/         # Shared TypeScript types (legacy — prefer domain models)
+├── services/
+│   └── api.ts     # Axios instance + fetcher helper
 ├── App.tsx
 └── main.tsx
 ```
+
+## API & Data Fetching
+
+- **HTTP client**: Axios (configured in `src/services/api.ts`)
+- **Server state**: `@tanstack/react-query` — all data fetching via React Query hooks
+- **Base URL**: `VITE_API_URL` from `.env` (`http://localhost:3333`)
+- **Fetcher helper**: `fetcher(url)` wraps `api.get(url).then(res => res.data)`
+
+### API Response Shape (Paginated)
+
+```ts
+{
+  refunds: {
+    meta: { total, perPage, currentPage, lastPage, ... },
+    data: Refund[]
+  }
+}
+```
+
+### Domain Module Pattern
+
+Each feature domain lives in `src/contexts/<domain>/` with this structure:
+
+```
+contexts/<domain>/
+├── models/       # Entity types
+├── hooks/        # React Query hooks
+└── components/   # Screen components consumed by pages
+```
+
+### Category Helpers (`src/utils/helpers.ts`)
+
+Central source of truth for category-related data:
+
+- `categoryIcons` — Object mapping category keys to `{ icon, label }`. Used by `RefundRow` to render the correct Phosphor icon dynamically via `categoryIcons[category].icon`.
+- `categoryOptions` — Pre-computed `{ label, value }[]` array for `<SelectField>` options. Import directly in pages: `import { categoryOptions } from "../utils/helpers"`.
+
+### Legacy Context
+
+The old `src/contexts/refund-context.tsx` uses mock data and `useRefund()`. New code should use the structured domain modules with React Query hooks under `contexts/refunds/`. Migrate pages one by one.
 
 ## Package Manager
 
