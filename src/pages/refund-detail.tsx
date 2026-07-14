@@ -8,17 +8,15 @@ import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { Skeleton } from "../components/Skeleton";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { useRefund } from "../contexts/refund-context";
+import { useRefund } from "../contexts/refunds/hooks/use-refund";
 import { categoryOptions } from "../utils/helpers";
 
 export function RefundDetail() {
   const { id } = useParams();
-  const { refunds, isLoading } = useRefund();
+  const { refund, isLoadingRefund } = useRefund(id);
   const navigate = useNavigate();
 
-  const refund = refunds.find((item) => item.id === id);
-
-  if (isLoading) {
+  if (isLoadingRefund) {
     return (
       <main className="mx-auto mt-10 w-full max-w-[512px]">
         <Card>
@@ -83,7 +81,7 @@ export function RefundDetail() {
         </Text>
 
         <div className="flex flex-col gap-8">
-          <Input label="NOME DA SOLICITAÇÃO" value={refund.name} disabled />
+          <Input label="NOME DA SOLICITAÇÃO" value={refund.title} disabled />
 
           <div className="flex gap-4">
             <div className="flex-1">

@@ -5,14 +5,14 @@ import { RefundDetail } from "./pages/refund-detail";
 import { NewRefund } from "./pages/new-refund";
 import { RefundSent } from "./pages/refund-sent";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { RefundProvider } from "./contexts/refund-context";
+import { NuqsAdapter } from "nuqs/adapters/react-router/v7";
 
 const queryClient = new QueryClient();
 
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RefundProvider>
+      <NuqsAdapter>
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
@@ -23,7 +23,7 @@ export function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </RefundProvider>
+      </NuqsAdapter>
     </QueryClientProvider>
   );
 }
