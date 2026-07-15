@@ -9,8 +9,8 @@ export function Layout() {
   const isActive = location.pathname === "/";
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-400">
-      <header className="mx-auto flex w-full max-w-[1185px] items-center justify-between py-2">
+    <div className="flex min-h-screen flex-col bg-gray-400 py-10 px-4">
+      <header className="mx-auto flex w-full max-w-[1185px] items-center justify-between">
         <LogoSvg />
         <nav className="flex items-center gap-4">
           <NavLink to="/" isActive={isActive}>

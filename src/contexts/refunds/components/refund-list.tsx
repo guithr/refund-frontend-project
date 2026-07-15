@@ -2,13 +2,14 @@ import { Link } from "react-router";
 import { RefundRow } from "./refund-row";
 import { Skeleton } from "../../../components/Skeleton";
 import { useRefunds } from "../hooks/use-refunds";
+import { Text } from "../../../components/Text";
 
 export function RefundList() {
   const { refunds, isLoadingRefunds } = useRefunds();
   return (
     <div className="space-y-4 my-6">
       {isLoadingRefunds ? (
-        Array.from({ length: 6 }).map((_, i) => (
+        Array.from({ length: 10 }).map((_, i) => (
           <div
             key={i}
             className="flex items-center justify-between py-0.5 px-2"
@@ -38,7 +39,9 @@ export function RefundList() {
           </Link>
         ))
       ) : (
-        <Skeleton className="h-4 w-16" />
+        <Text size="body-md" color="secondary" className="py-8">
+          Nenhuma solicitação encontrada
+        </Text>
       )}
     </div>
   );
