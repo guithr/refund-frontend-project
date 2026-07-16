@@ -14,9 +14,10 @@ interface InputProps
     Omit<React.ComponentProps<"input">, "size">,
     VariantProps<typeof inputVariants> {
   label?: string;
+  error?: string;
 }
 
-export function Input({ label, className, ...props }: InputProps) {
+export function Input({ label, error, className, ...props }: InputProps) {
   return (
     <label className="group flex flex-col gap-2">
       {label && (
@@ -25,6 +26,9 @@ export function Input({ label, className, ...props }: InputProps) {
         </span>
       )}
       <input className={inputVariants({ className })} {...props} />
+      {error && (
+        <span className="text-sm font-medium text-green-100">{error}</span>
+      )}
     </label>
   );
 }
