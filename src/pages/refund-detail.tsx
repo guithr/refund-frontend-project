@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from "react-router";
-import { toast } from "sonner";
 import { FileTextIcon } from "@phosphor-icons/react";
 import { Text } from "../components/Text";
 import { Input } from "../components/Input";
@@ -13,7 +12,8 @@ import { categoryOptions } from "../utils/helpers";
 
 export function RefundDetail() {
   const { id } = useParams();
-  const { refund, isLoadingRefund } = useRefund(id);
+  const { refund, isLoadingRefund, deleteRefund, isDeletingRefund } =
+    useRefund(id);
   const navigate = useNavigate();
 
   if (isLoadingRefund) {
@@ -59,14 +59,20 @@ export function RefundDetail() {
     );
   }
 
+  const refundId = refund.id;
+
   const formattedValue = refund.value.toLocaleString("pt-BR", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
 
-  function handleDelete() {
-    toast.success("Solicitação excluída com sucesso.");
-    navigate("/");
+  async function handleDelete() {
+    try {
+      await deleteRefund(refundId);
+      navigate("/");
+    } catch {
+      // Error handled by mutation's onError toast
+    }
   }
 
   return (
@@ -112,7 +118,9 @@ export function RefundDetail() {
             description="Tem certeza que deseja excluir essa solicitação? Essa ação é irreversível."
             onConfirm={handleDelete}
           >
-            <Button className="w-full">Excluir</Button>
+            <Button className="w-full" disabled={isDeletingRefund}>
+              {isDeletingRefund ? "Excluindo..." : "Excluir"}
+            </Button>
           </ConfirmDialog>
         </div>
       </Card>
