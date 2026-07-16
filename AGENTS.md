@@ -134,6 +134,40 @@ Rules:
 - Spread `...props` on the native element to forward all native props
 - Never use `React.createElement` — use JSX with dynamic `Tag`
 
+### Disabled Variant Pattern
+
+For interactive components that need a disabled state, create a `disabled` variant in `tv()` and use `enabled:` prefix on interactive pseudo-classes to prevent them when disabled:
+
+```ts
+const buttonVariants = tv({
+  base: `...`,
+  variants: {
+    disabled: {
+      true: "cursor-not-allowed opacity-50",
+    },
+  },
+  defaultVariants: {
+    disabled: false,
+  },
+});
+
+interface ButtonProps
+  extends Omit<React.ComponentProps<"button">, "disabled">,
+    VariantProps<typeof buttonVariants> {}
+
+export function Button({ disabled, ...props }: ButtonProps) {
+  return (
+    <button
+      className={buttonVariants({ disabled })}
+      disabled={disabled}
+      {...props}
+    />
+  );
+}
+```
+
+When defining hover/active styles, prefix with `enabled:` (e.g. `enabled:hover:bg-green-200`) so they don't apply when the element is disabled. Omit `disabled` from `React.ComponentProps` and handle it explicitly.
+
 ### Styling
 
 - Use Tailwind utility classes directly in JSX
@@ -193,6 +227,23 @@ src/
 - **Server state**: `@tanstack/react-query` — all data fetching via React Query hooks
 - **Base URL**: `VITE_API_URL` from `.env` (`http://localhost:3333`)
 - **Fetcher helper**: `fetcher(url)` wraps `api.get(url).then(res => res.data)`
+
+### `useRefunds()` Hook
+
+Located at `src/contexts/refunds/hooks/use-refunds.ts`. Returns:
+
+```ts
+{
+  refunds: Refund[] | undefined;        // data.refunds.data
+  meta: Meta | undefined;               // data.refunds.meta (total, perPage, currentPage, lastPage)
+  isLoadingRefunds: boolean;
+  filters: { q: string | null; setQ };
+  pagination: { page: number; setPage };
+  setSearch: (value: string) => void;   // sets q and resets page to 1
+}
+```
+
+Uses `nuqs` for URL query state (`q`, `page`) and fetches via React Query.
 
 ### API Response Shape (Paginated)
 
