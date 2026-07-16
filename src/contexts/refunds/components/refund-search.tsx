@@ -4,12 +4,12 @@ import { debounce } from "../../../utils/debounce";
 import React from "react";
 
 export function RefundSearch() {
-  const { filters } = useRefunds();
+  const { setSearch } = useRefunds();
   const [inputValue, setInputValue] = React.useState("");
 
   const debouncedSetValue = React.useMemo(
-    () => debounce((value: string) => filters.setQ(value), 200),
-    [filters.setQ],
+    () => debounce((value: string) => setSearch(value), 200),
+    [setSearch],
   );
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
