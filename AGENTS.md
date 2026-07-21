@@ -200,16 +200,23 @@ src/
 ├── components/    # Reusable UI components (Button, Card, Input, etc.)
 ├── contexts/
 │   ├── refund-context.tsx  # Legacy — use contexts/refunds/ instead
-│   └── refunds/            # Refund domain module
+│   ├── refunds/            # Refund domain module
+│   │   ├── models/
+│   │   │   └── refund.ts   # Refund entity type
+│   │   ├── hooks/
+│   │   │   └── use-refunds.ts  # Fetch refunds via React Query
+│   │   └── components/
+│   │       ├── refund-list.tsx  # List screen consumed by pages/home
+│   │       ├── refund-row.tsx   # Single row with dynamic icon & category
+│   │       ├── refund-pagination.tsx
+│   │       └── refund-search.tsx
+│   └── receipts/           # Receipt domain module
 │       ├── models/
-│       │   └── refund.ts   # Refund entity type
+│       │   └── receipt.ts  # Receipt entity type
 │       ├── hooks/
-│       │   └── use-refunds.ts  # Fetch refunds via React Query
+│       │   └── use-receipt.ts  # Upload receipt via POST /receipts
 │       └── components/
-│           ├── refund-list.tsx  # List screen consumed by pages/home
-│           ├── refund-row.tsx   # Single row with dynamic icon & category
-│           ├── refund-pagination.tsx
-│           └── refund-search.tsx
+│           └── receipt-viewer.tsx  # Dialog to view receipt (image/PDF)
 ├── pages/         # Route pages / screens (kebab-case, e.g. home.tsx, new-refund.tsx)
 ├── hooks/         # Custom React hooks
 ├── utils/

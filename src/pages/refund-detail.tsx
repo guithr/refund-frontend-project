@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from "react-router";
-import { FileTextIcon } from "@phosphor-icons/react";
 import { Text } from "../components/Text";
 import { Input } from "../components/Input";
 import { SelectField } from "../components/SelectField";
@@ -7,6 +6,7 @@ import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { Skeleton } from "../components/Skeleton";
 import { ConfirmDialog } from "../components/ConfirmDialog";
+import { ReceiptViewer } from "../contexts/receipts/components/receipt-viewer";
 import { useRefund } from "../contexts/refunds/hooks/use-refund";
 import { categoryOptions } from "../utils/helpers";
 
@@ -105,13 +105,11 @@ export function RefundDetail() {
         </div>
 
         <div className="mt-8 flex flex-col items-center gap-8">
-          <a
-            href="#"
-            className="flex items-center gap-[7px] text-sm font-semibold leading-6 text-green-100 hover:text-green-200"
-          >
-            <FileTextIcon size={18} className="text-green-100" />
-            Abrir comprovante
-          </a>
+          <ReceiptViewer
+            receiptId={refund.receipt.id}
+            extname={refund.receipt.extname}
+            originalFilename={refund.receipt.originalFilename}
+          />
 
           <ConfirmDialog
             title="Excluir solicitação"
