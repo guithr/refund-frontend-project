@@ -1,30 +1,28 @@
-import {
-  BedIcon,
-  ForkKnifeIcon,
-  PoliceCarIcon,
-  ReceiptIcon,
-  WrenchIcon,
-} from "@phosphor-icons/react";
+import ForkKnife from "../assets/icons/fork-knife.svg?react";
+import Bed from "../assets/icons/bed.svg?react";
+import PoliceCar from "../assets/icons/police-car.svg?react";
+import Wrench from "../assets/icons/wrench.svg?react";
+import Receipt from "../assets/icons/receipt.svg?react";
 
 export const categoryIcons = {
   food: {
-    icon: ForkKnifeIcon,
+    icon: ForkKnife,
     label: "Alimentação",
   },
   hosting: {
-    icon: BedIcon,
+    icon: Bed,
     label: "Hospedagem",
   },
   transport: {
-    icon: PoliceCarIcon,
+    icon: PoliceCar,
     label: "Transporte",
   },
   services: {
-    icon: WrenchIcon,
+    icon: Wrench,
     label: "Serviços",
   },
   other: {
-    icon: ReceiptIcon,
+    icon: Receipt,
     label: "Outros",
   },
 };

@@ -1,6 +1,6 @@
 import { useState, type ComponentProps } from "react";
 import { tv, type VariantProps } from "tailwind-variants";
-import { CloudArrowUpIcon } from "@phosphor-icons/react";
+import CloudArrowUp from "../assets/icons/cloud-arrow-up.svg?react";
 
 const fileInputVariants = tv({
   base: `
@@ -66,7 +66,7 @@ export function FileInput({
         </div>
 
         <div className={fileInputTriggerVariants()}>
-          <CloudArrowUpIcon className="size-6 text-white" />
+          <CloudArrowUp className="size-6 text-white" />
         </div>
       </div>
 
