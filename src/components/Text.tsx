@@ -6,8 +6,8 @@ const textVariants = tv({
     size: {
       'heading-xl': 'text-2xl leading-6 font-bold',
       'heading-lg': 'text-xl leading-6 font-bold',
-      'body-md': 'text-sm leading-[18px] font-normal',
-      'body-sm': 'text-[10px] leading-[14px] font-normal',
+      'body-md': 'text-sm leading-4.5 font-normal',
+      'body-sm': 'text-[10px] leading-3.5 font-normal',
     },
     color: {
       primary: 'text-gray-100',

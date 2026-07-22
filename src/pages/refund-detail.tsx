@@ -18,21 +18,21 @@ export function RefundDetail() {
 
   if (isLoadingRefund) {
     return (
-      <main className="mx-auto mt-10 w-full max-w-[512px]">
+      <main className="mx-auto mt-10 w-full max-w-lg">
         <Card>
           <Skeleton className="h-7 w-72 mb-3" />
           <Skeleton className="h-5 w-56 mb-10" />
           <div className="flex flex-col gap-8">
-            <div className="space-y-1">
+            <div className="flex flex-col gap-1">
               <Skeleton className="h-4 w-40" />
               <Skeleton className="h-11 w-full" />
             </div>
             <div className="flex gap-4">
-              <div className="flex-1 space-y-1">
+              <div className="flex flex-1 flex-col gap-1">
                 <Skeleton className="h-4 w-24" />
                 <Skeleton className="h-11 w-full" />
               </div>
-              <div className="w-[154px] space-y-1">
+              <div className="flex w-38.5 flex-col gap-1">
                 <Skeleton className="h-4 w-14" />
                 <Skeleton className="h-11 w-full" />
               </div>
@@ -49,7 +49,7 @@ export function RefundDetail() {
 
   if (!refund) {
     return (
-      <main className="mx-auto mt-10 w-full max-w-[512px]">
+      <main className="mx-auto mt-10 w-full max-w-lg">
         <Card className="text-center">
           <Text as="p" size="body-md" color="secondary">
             Solicitação não encontrada.
@@ -76,7 +76,7 @@ export function RefundDetail() {
   }
 
   return (
-    <main className="mx-auto mt-10 w-full max-w-[512px]">
+    <main className="mx-auto mt-10 w-full max-w-lg">
       <Card>
         <Text as="h1" size="heading-lg" color="primary">
           Solicitação de reembolso
@@ -98,7 +98,7 @@ export function RefundDetail() {
                 disabled
               />
             </div>
-            <div className="w-[154px]">
+            <div className="w-38.5">
               <Input label="VALOR" value={formattedValue} disabled />
             </div>
           </div>

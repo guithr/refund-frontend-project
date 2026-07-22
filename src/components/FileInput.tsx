@@ -44,7 +44,7 @@ export function FileInput({
   return (
     <label className="group flex cursor-pointer flex-col gap-2  ">
       {labelText && (
-        <span className="font-sans text-[10px] leading-[14px] uppercase text-gray-200 transition-colors group-focus-within:font-bold group-focus-within:text-green-100">
+        <span className="font-sans text-[10px] leading-3.5 uppercase text-gray-200 transition-colors group-focus-within:font-bold group-focus-within:text-green-100">
           {labelText}
         </span>
       )}

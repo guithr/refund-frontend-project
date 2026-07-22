@@ -22,10 +22,7 @@ export function NewRefund() {
   } = useRefundForm();
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mx-auto mt-10 w-full max-w-[512px]"
-    >
+    <form onSubmit={handleSubmit} className="mx-auto mt-10 w-full max-w-lg">
       <Card>
         <Text as="h1" size="heading-lg" color="primary">
           Nova solicitação de reembolso
@@ -55,7 +52,7 @@ export function NewRefund() {
                 error={errors.category}
               />
             </div>
-            <div className="w-[154px]">
+            <div className="w-38.5">
               <Input
                 label="VALOR"
                 placeholder="0,00"

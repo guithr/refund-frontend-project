@@ -7,7 +7,7 @@ import { Text } from "../../../components/Text";
 export function RefundList() {
   const { refunds, isLoadingRefunds } = useRefunds();
   return (
-    <div className="space-y-4 my-6">
+    <div className="flex flex-col gap-4 my-6">
       {isLoadingRefunds ? (
         Array.from({ length: 10 }).map((_, i) => (
           <div
@@ -15,8 +15,8 @@ export function RefundList() {
             className="flex items-center justify-between py-0.5 px-2"
           >
             <div className="flex items-center gap-3">
-              <Skeleton className="size-[34px] rounded-full" />
-              <div className="space-y-1">
+              <Skeleton className="size-8.5 rounded-full" />
+              <div className="flex flex-col gap-1">
                 <Skeleton className="h-4 w-32" />
                 <Skeleton className="h-3 w-20" />
               </div>

@@ -4,7 +4,7 @@ import { CaretDownIcon, CheckIcon } from "@phosphor-icons/react";
 
 const selectTriggerVariants = tv({
   base: `
-    group flex w-full flex-col items-start gap-2 outline-none
+    group flex w-full flex-col items-start gap-2 outline-hidden
     text-gray-200 transition-all
   `,
 });
@@ -12,7 +12,7 @@ const selectTriggerVariants = tv({
 const selectInputVariants = tv({
   base: `
     flex h-12 w-full items-center justify-between gap-4 rounded-lg border
-    border-gray-300 bg-white px-4 text-sm outline-none transition-colors
+    border-gray-300 bg-white px-4 text-sm outline-hidden transition-colors
     group-data-[state=open]:border-green-100
     disabled:cursor-not-allowed disabled:opacity-50
   `,
@@ -43,7 +43,7 @@ export function SelectField({
     <Select.Root {...props}>
       <Select.Trigger className={selectTriggerVariants({ className })}>
         {labelText && (
-          <span className="font-sans text-[10px] leading-[14px] uppercase transition-colors group-data-[state=open]:font-bold group-data-[state=open]:text-green-100">
+          <span className="font-sans text-[10px] leading-3.5 uppercase transition-colors group-data-[state=open]:font-bold group-data-[state=open]:text-green-100">
             {labelText}
           </span>
         )}
@@ -51,7 +51,7 @@ export function SelectField({
         <div className={selectInputVariants()}>
           <Select.Value
             placeholder={placeholder}
-            className="text-gray-100 data-placeholder:text-gray-200"
+            className="text-gray-100 data-[placeholder]:text-gray-200"
           />
           <Select.Icon>
             <CaretDownIcon
@@ -79,7 +79,7 @@ export function SelectField({
               <Select.Item
                 key={option.value}
                 value={option.value}
-                className="flex h-[42px] cursor-pointer items-center justify-between rounded-md px-4 text-sm text-gray-100 outline-none transition-colors data-highlighted:bg-gray-400 data-[state=checked]:font-bold"
+                className="flex h-10.5 cursor-pointer items-center justify-between rounded-md px-4 text-sm text-gray-100 outline-hidden transition-colors data-[highlighted]:bg-gray-400 data-[state=checked]:font-bold"
               >
                 <Select.ItemText>{option.label}</Select.ItemText>
                 <Select.ItemIndicator>

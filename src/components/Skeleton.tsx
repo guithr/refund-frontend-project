@@ -1,7 +1,7 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 const skeletonVariants = tv({
-  base: "animate-pulse bg-gray-300 pointer-events-none rounded-sm text-transparent",
+  base: "animate-pulse bg-gray-300 pointer-events-none rounded-xs text-transparent",
 });
 
 interface SkeletonProps

@@ -5,7 +5,7 @@ import { RefundPagination } from "../contexts/refunds/components/refund-paginati
 
 export function Home() {
   return (
-    <main className="mx-auto mt-10 w-full max-w-[1082px] rounded-2xl bg-gray-500 p-10">
+    <main className="mx-auto mt-10 w-full max-w-270.5 rounded-2xl bg-gray-500 p-10">
       <Text as="h1" size="heading-lg" color="primary" className="mb-6">
         Solicitações
       </Text>

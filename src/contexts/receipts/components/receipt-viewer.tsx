@@ -52,7 +52,7 @@ export function ReceiptViewer({
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="flex cursor-pointer items-center gap-[7px] text-sm font-semibold leading-6 text-green-100 transition-colors hover:text-green-200">
+        <button className="flex cursor-pointer items-center gap-1.75 text-sm font-semibold leading-6 text-green-100 transition-colors hover:text-green-200">
           <FileTextIcon size={18} />
           Abrir comprovante
         </button>
@@ -61,7 +61,7 @@ export function ReceiptViewer({
       <Dialog.Portal>
         <DialogOverlay />
 
-        <DialogContent className="max-w-[640px]">
+        <DialogContent className="max-w-160">
           <div className="flex items-start justify-between">
             <DialogTitle>{originalFilename}</DialogTitle>
 
@@ -72,21 +72,21 @@ export function ReceiptViewer({
             </Dialog.Close>
           </div>
 
-          <div className="mt-6 flex min-h-[400px] items-center justify-center">
-            {isLoading && <Skeleton className="h-[400px] w-full rounded-lg" />}
+          <div className="mt-6 flex min-h-100 items-center justify-center">
+            {isLoading && <Skeleton className="h-100 w-full rounded-lg" />}
 
             {!isLoading && receiptUrl && isImage && (
               <img
                 src={receiptUrl}
                 alt={originalFilename}
-                className="max-h-[500px] max-w-full rounded-lg object-contain"
+                className="max-h-125 max-w-full rounded-lg object-contain"
               />
             )}
 
             {!isLoading && receiptUrl && !isImage && (
               <iframe
                 src={receiptUrl}
-                className="h-[500px] w-full rounded-lg"
+                className="h-125 w-full rounded-lg"
                 title={originalFilename}
               />
             )}

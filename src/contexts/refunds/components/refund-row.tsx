@@ -15,8 +15,8 @@ export function RefundRow({ title, category, value }: RefundRowProps) {
   return (
     <div className="flex items-center justify-between py-0.5">
       <div className="flex items-center gap-3">
-        <div className="flex size-[34px] items-center justify-center rounded-full bg-gray-400">
-          <Icon svg={IconComponent} className="size-[18px] text-green-100" />
+        <div className="flex size-8.5 items-center justify-center rounded-full bg-gray-400">
+          <Icon svg={IconComponent} className="size-4.5 text-green-100" />
         </div>
         <div>
           <Text as="p" size="body-md" color="primary" className="font-bold">

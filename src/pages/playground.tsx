@@ -12,7 +12,7 @@ export function ComponentPlayground() {
     <div className="flex min-h-screen flex-col gap-8 bg-gray-500 p-8">
       <Text size="heading-lg" color="primary">Text Component</Text>
 
-      <section className="space-y-2">
+      <section className="flex flex-col gap-2">
         <Text size="heading-lg" color="primary">heading-lg</Text>
         <Text size="heading-lg" color="secondary">heading-lg secondary</Text>
         <Text size="heading-lg" color="success">heading-lg success</Text>
@@ -21,12 +21,12 @@ export function ComponentPlayground() {
         </Text>
       </section>
 
-      <section className="space-y-2">
+      <section className="flex flex-col gap-2">
         <Text size="heading-xl" color="success">heading-xl</Text>
         <Text size="heading-xl" color="primary">Solicitação enviada!</Text>
       </section>
 
-      <section className="space-y-2">
+      <section className="flex flex-col gap-2">
         <Text size="body-md" color="primary">body-md primary</Text>
         <Text size="body-md" color="secondary">body-md secondary — Dados da despesa para solicitar reembolso.</Text>
         <Text size="body-md" color="success">body-md success</Text>
@@ -36,12 +36,12 @@ export function ComponentPlayground() {
         </Text>
       </section>
 
-      <section className="space-y-2">
+      <section className="flex flex-col gap-2">
         <Text size="body-sm" color="secondary">body-sm secondary (label)</Text>
         <Text size="body-sm" color="success">body-sm success (label ativo)</Text>
       </section>
 
-      <section className="space-y-4">
+      <section className="flex flex-col gap-4">
         <Text size="heading-lg" color="primary">Button</Text>
         <div className="flex items-center gap-4">
           <Button>Default</Button>
@@ -49,7 +49,7 @@ export function ComponentPlayground() {
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="flex flex-col gap-4">
         <Text size="heading-lg" color="primary">Icon Button</Text>
         <div className="flex items-center gap-4">
           <IconButton>
@@ -61,7 +61,7 @@ export function ComponentPlayground() {
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="flex flex-col gap-4">
         <Text size="heading-lg" color="primary">Icon</Text>
         <div className="flex items-center gap-4">
           <Icon svg={MagnifyingGlass} className="size-6 text-green-100" />
@@ -70,7 +70,7 @@ export function ComponentPlayground() {
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="flex flex-col gap-4">
         <Text size="heading-lg" color="primary">NavLink</Text>
         <div className="flex items-center gap-2">
           <NavLink to="/">Default</NavLink>
@@ -78,7 +78,7 @@ export function ComponentPlayground() {
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="flex flex-col gap-4">
         <Text size="heading-lg" color="primary">Input</Text>
         <div className="flex max-w-sm flex-col gap-4">
           <Input label="Label" placeholder="Placeholder" />
@@ -86,7 +86,7 @@ export function ComponentPlayground() {
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section className="flex flex-col gap-4">
         <Text size="heading-lg" color="primary">SelectField</Text>
         <div className="flex max-w-sm flex-col gap-4">
           <SelectField
