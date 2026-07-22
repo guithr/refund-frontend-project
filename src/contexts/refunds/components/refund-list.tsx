@@ -39,7 +39,7 @@ export function RefundList() {
           </Link>
         ))
       ) : (
-        <Text size="body-md" color="secondary" className="py-8">
+        <Text size="body-md" color="secondary" className="py-8 text-center">
           Nenhuma solicitação encontrada
         </Text>
       )}

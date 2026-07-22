@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetcher } from "../../../services/api";
 import type { RefundIndex } from "../../../types/refund";
@@ -22,10 +23,13 @@ export function useRefunds() {
     queryFn: () => fetcher(`/refunds${toSearchParams({ q, page })}`),
   });
 
-  function setSearch(value: string) {
-    setQ(value || null);
-    setPage(1);
-  }
+  const setSearch = useCallback(
+    (value: string) => {
+      setQ(value || null);
+      setPage(1);
+    },
+    [setQ, setPage],
+  );
 
   return {
     refunds: data?.refunds,
