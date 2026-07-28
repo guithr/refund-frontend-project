@@ -18,6 +18,10 @@ const selectInputVariants = tv({
   `,
 });
 
+const labelVariants = tv({
+  base: "font-sans text-[10px] leading-3.5 uppercase transition-colors group-data-[state=open]:font-bold group-data-[state=open]:text-green-100",
+});
+
 interface Option {
   value: string;
   label: string;
@@ -42,11 +46,7 @@ export function SelectField({
   return (
     <Select.Root {...props}>
       <Select.Trigger className={selectTriggerVariants({ className })}>
-        {labelText && (
-          <span className="font-sans text-[10px] leading-3.5 uppercase transition-colors group-data-[state=open]:font-bold group-data-[state=open]:text-green-100">
-            {labelText}
-          </span>
-        )}
+        {labelText && <span className={labelVariants()}>{labelText}</span>}
 
         <div className={selectInputVariants()}>
           <Select.Value
@@ -62,9 +62,7 @@ export function SelectField({
         </div>
 
         {error && (
-          <span className="text-sm font-medium text-green-100">
-            {error}
-          </span>
+          <span className="text-sm font-medium text-green-100">{error}</span>
         )}
       </Select.Trigger>
 

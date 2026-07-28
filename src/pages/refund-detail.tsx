@@ -87,19 +87,19 @@ export function RefundDetail() {
         </Text>
 
         <div className="flex flex-col gap-8">
-          <Input label="NOME DA SOLICITAÇÃO" value={refund.title} disabled />
+          <Input label="Nome da solicitação" value={refund.title} disabled />
 
           <div className="flex gap-4">
             <div className="flex-1">
               <SelectField
-                labelText="CATEGORIA"
+                labelText="Categoria"
                 defaultValue={refund.category}
                 options={categoryOptions}
                 disabled
               />
             </div>
             <div className="w-38.5">
-              <Input label="VALOR" value={formattedValue} disabled />
+              <Input label="Valor" value={formattedValue} disabled />
             </div>
           </div>
         </div>

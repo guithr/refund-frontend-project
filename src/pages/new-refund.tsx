@@ -34,7 +34,7 @@ export function NewRefund() {
 
         <div className="flex flex-col gap-6">
           <Input
-            label="NOME DA SOLICITAÇÃO"
+            label="Nome da solicitação"
             placeholder="Nome da solicitação"
             value={title}
             error={errors.title}
@@ -44,7 +44,7 @@ export function NewRefund() {
           <div className="flex gap-4">
             <div className="flex-1">
               <SelectField
-                labelText="CATEGORIA"
+                labelText="Categoria"
                 placeholder="Selecione"
                 value={category}
                 onValueChange={setCategory}
@@ -54,7 +54,8 @@ export function NewRefund() {
             </div>
             <div className="w-38.5">
               <Input
-                label="VALOR"
+                type="number"
+                label="Valor"
                 placeholder="0,00"
                 value={value}
                 error={errors.value}
@@ -64,7 +65,7 @@ export function NewRefund() {
           </div>
 
           <FileInput
-            labelText="COMPROVANTE"
+            labelText="Comprovante"
             placeholder="Nome do arquivo.pdf"
             error={errors.receipt}
             onChange={handleFileChange}

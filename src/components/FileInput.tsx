@@ -16,6 +16,10 @@ const fileInputTriggerVariants = tv({
   `,
 });
 
+const labelVariants = tv({
+  base: "font-sans text-[10px] leading-3.5 uppercase text-gray-200 transition-colors group-focus-within:font-bold group-focus-within:text-green-100",
+});
+
 interface FileInputProps
   extends
     Omit<ComponentProps<"input">, "size" | "placeholder">,
@@ -43,11 +47,7 @@ export function FileInput({
 
   return (
     <label className="group flex cursor-pointer flex-col gap-2  ">
-      {labelText && (
-        <span className="font-sans text-[10px] leading-3.5 uppercase text-gray-200 transition-colors group-focus-within:font-bold group-focus-within:text-green-100">
-          {labelText}
-        </span>
-      )}
+      {labelText && <span className={labelVariants()}>{labelText}</span>}
 
       <div className={fileInputVariants({ className })}>
         <div className="relative flex flex-1 items-center pl-3">

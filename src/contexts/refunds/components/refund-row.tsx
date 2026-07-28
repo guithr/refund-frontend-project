@@ -18,12 +18,12 @@ export function RefundRow({ title, category, value }: RefundRowProps) {
         <div className="flex size-8.5 items-center justify-center rounded-full bg-gray-400">
           <Icon svg={IconComponent} className="size-4.5 text-green-100" />
         </div>
-        <div>
-          <Text as="p" size="body-md" color="primary" className="font-bold">
+        <div className="flex flex-col">
+          <Text as="span" size="body-md" color="primary" className="font-bold">
             {title}
           </Text>
           <Text
-            as="p"
+            as="span"
             size="body-sm"
             color="secondary"
             className="text-xs leading-4"

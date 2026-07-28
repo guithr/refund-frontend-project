@@ -9,6 +9,10 @@ const inputVariants = tv({
   `,
 });
 
+const labelVariants = tv({
+  base: "font-sans text-[10px] leading-3.5 uppercase text-gray-200 transition-colors group-focus-within:font-bold group-focus-within:text-green-100",
+});
+
 interface InputProps
   extends
     Omit<React.ComponentProps<"input">, "size">,
@@ -21,9 +25,7 @@ export function Input({ label, error, className, ...props }: InputProps) {
   return (
     <label className="group flex flex-col gap-2">
       {label && (
-        <span className="font-sans text-[10px] leading-3.5 uppercase text-gray-200 transition-colors group-focus-within:font-bold group-focus-within:text-green-100">
-          {label}
-        </span>
+        <span className={labelVariants()}>{label}</span>
       )}
       <input className={inputVariants({ className })} {...props} />
       {error && (
