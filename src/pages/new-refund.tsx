@@ -5,19 +5,17 @@ import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { FileInput } from "../components/FileInput";
 import { categoryOptions } from "../utils/helpers";
-import { useRefundForm } from "./hooks/use-refund-form";
+import { useRefundForm } from "../contexts/refunds/hooks/use-refund-form";
+import { Controller } from "react-hook-form";
 
 export function NewRefund() {
   const {
-    title,
-    setTitle,
-    category,
-    setCategory,
-    value,
-    setValue,
-    handleFileChange,
+    register,
+    control,
+
     errors,
     isSubmitting,
+
     handleSubmit,
   } = useRefundForm();
 
@@ -36,39 +34,54 @@ export function NewRefund() {
           <Input
             label="Nome da solicitação"
             placeholder="Nome da solicitação"
-            value={title}
-            error={errors.title}
-            onChange={(e) => setTitle(e.target.value)}
+            error={errors.title?.message}
+            {...register("title")}
           />
 
           <div className="flex gap-4">
             <div className="flex-1">
-              <SelectField
-                labelText="Categoria"
-                placeholder="Selecione"
-                value={category}
-                onValueChange={setCategory}
-                options={categoryOptions}
-                error={errors.category}
+              <Controller
+                control={control}
+                name="category"
+                render={({ field }) => (
+                  <SelectField
+                    labelText="Categoria"
+                    placeholder="Selecione"
+                    options={categoryOptions}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    error={errors.category?.message}
+                  />
+                )}
               />
             </div>
+
             <div className="w-38.5">
               <Input
                 type="number"
                 label="Valor"
                 placeholder="0,00"
-                value={value}
-                error={errors.value}
-                onChange={(e) => setValue(e.target.value)}
+                {...register("value", {
+                  valueAsNumber: true,
+                })}
+                error={errors.value?.message}
               />
             </div>
           </div>
-
-          <FileInput
-            labelText="Comprovante"
-            placeholder="Nome do arquivo.pdf"
-            error={errors.receipt}
-            onChange={handleFileChange}
+          <Controller
+            control={control}
+            name="receiptFile"
+            render={({ field }) => (
+              <FileInput
+                labelText="Comprovante"
+                placeholder="Nome do arquivo.pdf"
+                error={errors.receiptFile?.message}
+                onChange={(event) => {
+                  const file = event.target.files?.[0] ?? null;
+                  field.onChange(file);
+                }}
+              />
+            )}
           />
         </div>
 

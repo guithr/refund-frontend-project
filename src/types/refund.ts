@@ -42,7 +42,14 @@ export type RefundShow = {
   };
 };
 
-export type RefundCreate = {
+export type RefundCreatePayload = {
+  title: string;
+  category: Refund["category"];
+  value: number;
+  receipt: string;
+};
+
+export type RefundCreateResponse = {
   refund: Refund & {
     deletedAt: string | null;
     createdAt: string;

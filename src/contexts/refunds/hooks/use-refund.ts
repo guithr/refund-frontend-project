@@ -1,29 +1,41 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { api, fetcher } from "../../../services/api";
 import type {
-  RefundCreate,
+  RefundCreatePayload,
   RefundShow,
   RefundDelete,
+  RefundCreateResponse,
 } from "../../../types/refund";
-import type { RefundNewFormSchema } from "../schema";
+import type { RefundCreateFormSchema } from "../schema";
+import { useReceipt } from "../../receipts/hooks/use-receipt";
 import { toast } from "sonner";
 
 export function useRefund(id?: string) {
+  const { createReceipt } = useReceipt();
+
   const { mutateAsync: createRefund, isPending: isCreatingRefund } =
     useMutation({
-      mutationFn: (payload: RefundNewFormSchema) =>
+      mutationFn: (payload: RefundCreatePayload) =>
         api
-          .post<RefundCreate>("refunds", {
-            title: payload.title,
-            category: payload.category,
-            value: payload.value,
-            receipt: payload.receipt,
-          })
+          .post<RefundCreateResponse>("refunds", payload)
           .then((res) => res.data),
       onError: () => {
         toast.error("Erro ao criar solicitação de reembolso");
       },
     });
+
+  async function createRefundWithReceipt(payload: RefundCreateFormSchema) {
+    const receiptData = await createReceipt({
+      receiptFile: payload.receiptFile,
+    });
+
+    return createRefund({
+      title: payload.title,
+      category: payload.category,
+      value: payload.value,
+      receipt: receiptData.receipt.id,
+    });
+  }
 
   const { mutateAsync: deleteRefund, isPending: isDeletingRefund } =
     useMutation({
@@ -46,6 +58,7 @@ export function useRefund(id?: string) {
   return {
     createRefund,
     isCreatingRefund,
+    createRefundWithReceipt,
     deleteRefund,
     isDeletingRefund,
     refund: data?.refund,

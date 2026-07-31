@@ -1,6 +1,13 @@
 import { z } from "zod";
+import { receiptNewFormSchema } from "../receipts/schema";
 
-export const refundNewFormSchema = z.object({
+/**
+ * ============================================================================
+ * Schemas principais
+ * ============================================================================
+ */
+
+export const refundSchema = z.object({
   title: z.string().min(1, { message: "Informe um nome." }).max(255),
   category: z.enum(["food", "hosting", "transport", "services", "other"], {
     error: "Informe uma categoria.",
@@ -9,14 +16,20 @@ export const refundNewFormSchema = z.object({
   receipt: z.uuid(),
 });
 
-export const refundStepOneSchema = refundNewFormSchema.pick({
+export const refundStepOneSchema = refundSchema.pick({
   title: true,
   category: true,
   value: true,
 });
 
-export const refundReceiptSchema = refundNewFormSchema.pick({
+export const refundReceiptSchema = refundSchema.pick({
   receipt: true,
 });
 
-export type RefundNewFormSchema = z.infer<typeof refundNewFormSchema>;
+export const refundCreateFormSchema = refundStepOneSchema.extend({
+  receiptFile: receiptNewFormSchema.shape.receiptFile,
+});
+
+export type RefundSchema = z.infer<typeof refundSchema>;
+
+export type RefundCreateFormSchema = z.infer<typeof refundCreateFormSchema>;
